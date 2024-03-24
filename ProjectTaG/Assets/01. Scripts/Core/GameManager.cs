@@ -16,4 +16,9 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    private void Start()
+    {
+        InputManager.ChangeInput(InputType.Play);
+    }
 }
