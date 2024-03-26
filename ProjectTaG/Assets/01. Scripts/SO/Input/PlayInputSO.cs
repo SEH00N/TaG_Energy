@@ -7,7 +7,7 @@ using static Controls;
 public class PlayInputSO : InputSO, IPlayActions
 {
     public event Action<FireType> OnFireEvent = null;
-    public event Action OnJumpEvent = null;
+    public event Action<bool> OnJumpEvent = null;
 
     public Vector2 MovementInput { get; private set; }
     public Vector2 MouseDelta { get; private set; }
@@ -34,7 +34,9 @@ public class PlayInputSO : InputSO, IPlayActions
     public void OnJump(InputAction.CallbackContext context)
     {
         if(context.performed)
-            OnJumpEvent?.Invoke();
+            OnJumpEvent?.Invoke(true);
+        else if(context.canceled)
+            OnJumpEvent?.Invoke(false);
     }
 
     public void OnFire(InputAction.CallbackContext context)

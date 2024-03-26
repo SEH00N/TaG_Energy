@@ -3,7 +3,7 @@ using static Controls;
 
 public class InputSO : ScriptableObject
 {
-    public InputType inputType;
+    public InputType InputType;
 
     protected virtual void OnEnable()
     {

@@ -15,7 +15,7 @@ public static class InputManager
 
     public static void RegistInput(InputSO inputSO, InputActionMap actionMap)
     {
-        inputList[inputSO.inputType] = actionMap;
+        inputList[inputSO.InputType] = actionMap;
         actionMap.Disable();
     }
 

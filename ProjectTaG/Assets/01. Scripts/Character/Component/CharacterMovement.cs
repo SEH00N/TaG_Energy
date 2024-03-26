@@ -10,7 +10,10 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer = 0;
     [SerializeField] float groundThreshold = 0.5f;
 
+    private float verticalVelocity = 0f;
     private bool isGround = false;
+    public bool IsGround => isGround;
+
     private Vector3 velocity = Vector3.zero;
     public Vector3 Velocity => velocity;
 
@@ -24,7 +27,7 @@ public class CharacterMovement : MonoBehaviour
 	private void FixedUpdate()
     {
         isGround = characterController.isGrounded | CheckGround();
-        if(isGround && velocity.y < 0f)
+        if(isGround && verticalVelocity < 0f)
             ApplyGravity(Time.fixedDeltaTime, 0.3f);
         else
             ApplyGravity(Time.fixedDeltaTime, 1f);
@@ -37,6 +40,11 @@ public class CharacterMovement : MonoBehaviour
         this.velocity = velocity;
     }
 
+    public void SetVerticalVelocity(float velocity)
+    {
+        verticalVelocity = velocity;
+    }
+
     private bool CheckGround()
     {
         return Physics.Raycast(transform.position, Vector3.down, groundThreshold, groundLayer);
@@ -44,7 +52,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void ApplyGravity(float deltaTime, float scale = 1f)
     {
-        velocity.y += Physics.gravity.y * gravityScale * deltaTime * scale;
+        verticalVelocity += Physics.gravity.y * gravityScale * deltaTime * scale;
+        velocity.y = verticalVelocity;
     }
 
     private void ApplyVelocity(float deltaTime)

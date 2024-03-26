@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e269134e053ef4a9274dff59031545, type: 3}
   m_Name: PlayInput
   m_EditorClassIdentifier: 
-  inputType: 1
+  InputType: 1
